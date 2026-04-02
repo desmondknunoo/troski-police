@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&amp;family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#006a3e",
+              "surface-variant": "#353534",
+              "on-primary-fixed": "#231b00",
+              "outline-variant": "#4d4632",
+              "secondary": "#81d9a2",
+              "on-secondary-fixed": "#002110",
+              "on-tertiary": "#68000c",
+              "on-surface": "#e5e2e1",
+              "on-secondary-fixed-variant": "#00522f",
+              "on-error-container": "#ffdad6",
+              "tertiary-fixed": "#ffdad7",
+              "on-tertiary-fixed-variant": "#930015",
+              "surface-container": "#201f1f",
+              "surface-container-high": "#2a2a2a",
+              "error-container": "#93000a",
+              "surface-tint": "#ecc300",
+              "primary-fixed": "#ffe17b",
+              "primary": "#fff0c9",
+              "on-secondary": "#00391f",
+              "on-secondary-container": "#8fe7b0",
+              "tertiary": "#ffeeec",
+              "on-primary-fixed-variant": "#554500",
+              "on-error": "#690005",
+              "secondary-fixed": "#9df5bd",
+              "surface-container-highest": "#353534",
+              "on-primary": "#3b2f00",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-bright": "#3a3939",
+              "primary-container": "#fcd116",
+              "inverse-on-surface": "#313030",
+              "on-primary-container": "#6e5a00",
+              "background": "#050505",
+              "error": "#ffb4ab",
+              "on-tertiary-fixed": "#410004",
+              "tertiary-container": "#ffc8c4",
+              "tertiary-fixed-dim": "#ffb3ae",
+              "surface-dim": "#131313",
+              "on-surface-variant": "#d0c6ab",
+              "outline": "#999078",
+              "surface-container-low": "#1c1b1b",
+              "inverse-primary": "#715c00",
+              "secondary-fixed-dim": "#81d9a2",
+              "surface": "#131313",
+              "inverse-surface": "#e5e2e1",
+              "primary-fixed-dim": "#ecc300",
+              "on-background": "#e5e2e1",
+              "on-tertiary-container": "#bb001e"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #050505; color: #e5e2e1; font-family: 'Manrope', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-black text-yellow-400 italic font-['Epilogue'] tracking-tighter">NanaPlay</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8 items-center text-neutral-400 font-bold font-['Manrope']">
+<a class="text-yellow-400 font-bold hover:text-yellow-200 transition-colors" href="#">Home</a>
+<a class="hover:text-yellow-200 transition-colors" href="#">Movies</a>
+<a class="hover:text-yellow-200 transition-colors" href="#">TV Shows</a>
+<a class="hover:text-yellow-200 transition-colors" href="#">My List</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-neutral-400 cursor-pointer hover:text-yellow-400 transition-colors" data-icon="search">search</span>
+<span class="material-symbols-outlined text-neutral-400 cursor-pointer hover:text-yellow-400 transition-colors" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden ring-2 ring-yellow-400/20">
+<img alt="User Profile" data-alt="close up profile headshot of a stylish young Ghanaian man with modern short haircut and minimalist glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc5ibJCjdNxtH4uUDssulmqLp4pR1becsxRXrEtHz-hbfGkeOqllahko8wjrdssBryDq8FfrNPVMB7Q2ZIOJzyYmuOxo-GYn8INU4J44_tkpkoGqyz8ifp1kvPPRBKqe6cuCVxWRQGEhXTyPZsnSHC4rEdVDZfEKt6Qm5r192azDnO_pxiTLiq44jPMeMM4AGy9Ys3keoTiKdexxg8dICegzKtXjw1bfiCadROQAHahYcfC8q39gaQMSPtFl2SBfCDhsqB2fnKbYk"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pb-24">
+<!-- Hero Section -->
+<section class="relative w-full h-[751px] flex items-end">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Cinematic epic shot of vibrant Accra skyline at dusk with dramatic orange and purple sky and misty atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPlijX4kDpJRD9KVm92C6JbVjFVHWpDAZs1PbklPxrsIubrZttaaVNu2En2toGcpegb6c1lvA6yn_Q2hTIa_NEdUhKjvqqcOM5drr4anetZK7LGPuyuWWeHoGf_j8b6Osefinrlb_KNZvgNupymnNECpW5FdGgM-VcdAJAC_TOMoKnk-ekzUuJ8TnZIJf2_aT0l0W7mfWX5To5SCZhHwHxuFhDMOjnaCmRtokNknF9jqTvSjkW5Pn5ZO25lxX0NrS056qAixMDwGI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 px-6 md:px-12 pb-16 max-w-3xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-yellow-400 text-neutral-950 text-[10px] font-black px-2 py-0.5 rounded-sm uppercase tracking-widest">Featured</span>
+<span class="text-white/60 font-medium text-xs tracking-wide">Action • Drama • History</span>
+</div>
+<h1 class="font-headline text-5xl md:text-8xl font-black text-white italic tracking-tighter mb-4 leading-tight">Ghana's Pride</h1>
+<p class="text-neutral-300 text-lg md:text-xl font-body max-w-xl mb-8 leading-relaxed">
+                    In the heart of the Gold Coast, an untold story of resilience and triumph emerges as the nation carves its destiny.
+                </p>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container flex items-center gap-3 px-8 py-4 rounded-full font-black uppercase tracking-tighter hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        Play
+                    </button>
+<button class="bg-surface-container-high/40 backdrop-blur-md text-white flex items-center gap-3 px-8 py-4 rounded-full font-black uppercase tracking-tighter border border-white/10 hover:bg-surface-container-high/60 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                        My List
+                    </button>
+</div>
+</div>
+</section>
+<!-- Trending in Ghana -->
+<section class="mt-[-100px] relative z-20 px-6 md:px-12 mb-12">
+<h2 class="font-headline text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                Trending in Ghana
+                <span class="w-12 h-1 bg-yellow-400 rounded-full"></span>
+</h2>
+<div class="flex overflow-x-auto gap-4 hide-scrollbar py-4 -mx-2 px-2">
+<!-- Trending Card 1 -->
+<div class="flex-none w-40 md:w-56 group cursor-pointer transition-all duration-300 hover:z-30 hover:scale-110">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Vibrant movie poster showing two Ghanaian football players celebrating on a lush green field under bright stadium lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBll0X8F0dyG2dB0fwL5ny3ZlAw85d0odOXngOVPK76IUlCs21HKshOmKz6sMWe1DE332cjWNbip2qYdC8796ApvkADzGsQ8YIyWD47ri2EoBImapvXxvrZ28H_drWWyeARv3e1dnZuU8JPJMn3eCCaSr-B_1c5E7jX3FlfzwPu9c9-CmtAgg-xmgSkxqCH1VqNhK5-t67DEz7NcwKvTyebvXNCt4fTqPqR2K4Arkzz00jweKuT87qkdyGDC98Vh8cc93gvMjirI58"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-2 left-2">
+<span class="bg-[#CE1126] text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-tighter flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]" data-icon="sensors" style="font-variation-settings: 'FILL' 1;">sensors</span> LIVE
+                            </span>
+</div>
+</div>
+</div>
+<!-- Trending Card 2 -->
+<div class="flex-none w-40 md:w-56 group cursor-pointer transition-all duration-300 hover:z-30 hover:scale-110">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Dramatic cinematic portrait of a powerful woman in traditional Kente cloth standing against a gold textured background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU-encRZGwk7bAlWjTKS_HdvWyLH8WvkV47mYXhiSQQs6pA888Tgkw5OWaLs3TzgL1yPJFsi0m5Fkjdefs0GY9mj0gJQlZMLneclzq_3WcgmlzcCP-YpsRs8MKXXlUr0GIbryU1DxZ5LTTGQd7cZmFyhi-mDdFw1-qkkTgV6YybG7M_Ln95KgvCVvha0xnguR17V5qoafZ8vJxL-6xSclwCbe6a0EcBeNXQ5d6CilSMxUG2ecwqEl2Rw9XiSokDN2COdWrS6SdjZo"/>
+<div class="absolute top-2 left-2">
+<span class="bg-[#006B3F] text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-tighter">NEW EPISODE</span>
+</div>
+</div>
+</div>
+<!-- Trending Card 3 -->
+<div class="flex-none w-40 md:w-56 group cursor-pointer transition-all duration-300 hover:z-30 hover:scale-110">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Urban night scene in Osu Accra with glowing neon signs and a sleek sports car blurred in the foreground" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsIrNCbplaTwlBLHpAseKcsTFqG6fZE57u9pyWyeUJElrSL-e70XnY0icrYRHIeJRCC5V46iEmfx3FT7Fufd_1RJHqPq5Gx-TgT2zf2ID8ePhCeMHriZWVkkJ-0Y3lJ3BPCrJBjoXs8PuVIdES59IF5HEil6MGLs854zUl3qjkm2vfal-JohmM0_o398JOGSxmp_p8e3SgBzRW3RrOHILGYuiApa0U9UgUJ8Gc4rliXAcvVJRItMLS9G4li4UvxN1yp00b3GQXIGw"/>
+</div>
+</div>
+<!-- Trending Card 4 -->
+<div class="flex-none w-40 md:w-56 group cursor-pointer transition-all duration-300 hover:z-30 hover:scale-110">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Documentary style image of Cape Coast Castle at sunrise with ocean waves crashing against ancient stone walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-vzdlVOrM_TB5zQTrwUc4f6cZkQXYfu6QFX2lM1mGT77V8Ks9A4_xW1HxVIch2rsP_1lRIW9lx6oKshKbLLpxyjStiQwjDcji7uj_NMvqIDMJ432PtYj701_fucJxuMpefOEEpa7bpC0p_vcdIH3fJJHhPJ23fAGA-wqs5_xbiocirSjyuRLohzsHGTMfCv1FFcOHrUxvd1UvbUy-QPD8mZM6R42pn51jhUPRdTZu5pb06RbZorOtiU7hjNH5aJuBGLUy1GL_m0E"/>
+</div>
+</div>
+<!-- Trending Card 5 -->
+<div class="flex-none w-40 md:w-56 group cursor-pointer transition-all duration-300 hover:z-30 hover:scale-110">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Dynamic shot of contemporary Ghanaian dancers in a warehouse setting with dramatic spotlighting and smoke effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABkoHA1-NxtlZRpdUNj4D4eVxdSFPB2QOMBIB-ynCUdzOZJDHacFA_2rk27leja3PvEJgLP3NyDvR-OOksOugmDixYbS-LYxqqiMAa_crW3djQzoN7ecg61rwhfqQm8vXCN5keQgicmFomLbsimbGkt9QnR5urv36g7XuzQskAOU9suf6vWJIlq1ypxb3TDHV6cUxzZYp4SdraKlTQOA_VwCungRtZWwkv5iqMYzcpcDLDScEFIErAFlvxZipts2DYdnJ2Jn2_N3o"/>
+</div>
+</div>
+<!-- Trending Card 6 -->
+<div class="flex-none w-40 md:w-56 group cursor-pointer transition-all duration-300 hover:z-30 hover:scale-110">
+<div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Animated colorful scene of bustling Makola market with stylized characters and vibrant market stalls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIK4mbbGsQrk11HrsMFEh3qC2Ao-DwTNQ0NML3JY4qD3op5EThKu4wm8Tex9dYpWtbVc9cVgqq_DRUNJcj9kgMkv5_oZxCaN47W1WRNizAZEtoIg39KNa2erKui-Ud-fOGx8_0AU9USiSDGOsBJ3TU0on1ZhcBHmWpFbBaCRtltKSl5RoJMTJglZFm6nuufJoFWtABahC1qmtJaraQAm7XdrA8EPQz5rY1huC2YHf164RHIlb2oec4-SkKx_eSQlYIymDzqPeeLLk"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Ghanaian A-Listers (Circular Bento Row) -->
+<section class="px-6 md:px-12 mb-12">
+<h2 class="font-headline text-2xl font-bold text-white mb-8">Ghanaian A-Listers</h2>
+<div class="flex overflow-x-auto gap-8 hide-scrollbar py-4">
+<div class="flex-none flex flex-col items-center gap-4 group cursor-pointer">
+<div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-transparent group-hover:border-yellow-400 transition-all duration-500 p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Professional studio portrait of a famous Ghanaian female actor with elegant braided hair and soft glamour lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK1yufNFLgvFTS5kCK0dXlPSgX6IUQBpnSYLj8eiDX5li6072SNES1vohqHC-N8OVzfMhsQI9hYSwFu9fZs7kJlqQ6GwL8_iDC0LeqwMOs7QBGe_Rasl0Jen3GQuggd6nZQqj-VGST1qYqOBJ0Ya_EgDIDou1ep6W9IZFNPVQvaewhnPUsLFDCoqMfwx70-Gk1gPox9wJMiLWslglBz0D_l-zJGMBb-hZA0cJqTEPqKvEC2aDXBgtlWUZgJC6ETN7nGBl3T20AXgM"/>
+</div>
+<span class="text-neutral-300 font-black text-sm uppercase tracking-widest group-hover:text-yellow-400 transition-colors">Jackie Appiah</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-4 group cursor-pointer">
+<div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-transparent group-hover:border-yellow-400 transition-all duration-500 p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Chiseled portrait of a prominent Ghanaian male lead actor looking off-camera with a serious expression in moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhKX7h9jDxtZYNPTy__IJNh64M7A7x6hh1ejbjLxUuqiPONoBOUV_LLiLTEVAg-PJ922mL1p4TNQBU_dFCYNzEb2YxqY7Y8CaOzBbUR6KvACaFtcP00yAqcLRlmvUI_jR_cVAx5ei7bQLccEMZeYOtvSaxa_BJuY_EHbl3LwZM-BIFNd7_bNqetOSHqg1BbJZIk6I0hYHgKOo66D0FMyaO2q_vnv5-9xhVZThQ43FtV3v9CvSQKygRMyoebJ0ZXY0CMvsnvGKGi0k"/>
+</div>
+<span class="text-neutral-300 font-black text-sm uppercase tracking-widest group-hover:text-yellow-400 transition-colors">Majid Michel</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-4 group cursor-pointer">
+<div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-transparent group-hover:border-yellow-400 transition-all duration-500 p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Radiant portrait of a celebrated Ghanaian actress smiling warmly with natural lighting and soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7u63kj48zlxDcq-OeQs6rMAwsi41N842VLNe7UVVR8kaWrli_E7KsK1xVesHXrJpsiGq18Z9KCQf_-fQN31AZAtOm-WSYPpDk7qk4xMBW4u9Yj1P4kX3OA9XImTtHt4_Oir4gu77g6RP4WbEyuJmHx3p9Kqb9GJxVZAmdUXAyVxCWzrDEAZmJO9gGX9275_WjUp7jU-RubeF1dwpQL3q9bLfNo7xARIZgE2HUUuy3ZQ7zUt_dM-Jql4hDoPbio1l55yZDyLsZ0TI"/>
+</div>
+<span class="text-neutral-300 font-black text-sm uppercase tracking-widest group-hover:text-yellow-400 transition-colors">Yvonne Nelson</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-4 group cursor-pointer">
+<div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-transparent group-hover:border-yellow-400 transition-all duration-500 p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Stylish headshot of a young rising star Ghanaian actor with modern grooming and edgy fashion in high contrast lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_BZUMKAQcGXMXvcBS95Xw5_Dk-uSdw-OYJ0etbaD9lYFE4I4T7YtxwB-SPcutpUfevfb1BxFuMhYzHvTJ43LxZ53adUtnvCEvgWxnRGdorRH0YS5cfK6HXoBTJJFnbfxEHNlwdC1bIhOkdA7bcwvU7EKWtfHqAf7w81u9ALLKML5WvDwRG99JxY0lac3MuGpCm4MwaiTCkUJa81BdEdFISetX01-6TVjWOxUpKMYwAUjzGQPrYeuTW5D3xicmgYnkIQSyAY4MFMg"/>
+</div>
+<span class="text-neutral-300 font-black text-sm uppercase tracking-widest group-hover:text-yellow-400 transition-colors">Adjetey Anang</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-4 group cursor-pointer">
+<div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-transparent group-hover:border-yellow-400 transition-all duration-500 p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Regal studio portrait of a veteran Ghanaian cinema star with dignified expression and warm golden lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkoQk4b4KS1-MoCpLJz7c9nx7esWqX0Uae29Pc9i0HuVG91aukmADA8cgmOkygsLq6jzHkqEHEkWC_HiFAyDJs07ttPfpn_RPoU8ad5qmR9rsV41uc7hzKOCjVc9VWtsZp3NXFKN20x9YVARiuTHEds6z9-Lsxb8HJy-y2vjg_YrOvuPfdTZ-Bd7mLbMDep1OaksU9DbT-WQ4cCnAjKHNQNOWVx3dc-tXLgy8RVdMWyBzAXL4MlLAh9bcApiF_Br_C7LWCaiyNgLc"/>
+</div>
+<span class="text-neutral-300 font-black text-sm uppercase tracking-widest group-hover:text-yellow-400 transition-colors">Nadia Buari</span>
+</div>
+</div>
+</section>
+<!-- Continue Watching (Glassmorphism Bento) -->
+<section class="px-6 md:px-12 mb-12">
+<h2 class="font-headline text-2xl font-bold text-white mb-6">Continue Watching</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container/40 border border-white/5 backdrop-blur-xl p-4 flex gap-4 hover:bg-surface-container/60 transition-all">
+<div class="relative w-32 h-20 flex-none rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Wide cinematic shot of a sunset over the Volta river with small fishing boats silhouetted against the water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD99_8iaSQ4V9WNYAPnHWBvO3cF99eBzFHC74piU96wr_hnZ7kPVrJ5pFMLtgMuFnhJRBFsXCR-Kroi4wjFMankKl2J4wRh669IksVOq_fHO1y46qjw1De3EZ1-9DsU8ePea1kqQvtfoTJGzYi5MpN_o3T9zaHJ9jayJY4X7XwBCcQrq_0iWHiVBVjngPIhB5VCgcU2X13ogZuAqL-4eZNtEU1_AqmGIXdMkjrA7asUQ1ZcPyrv_5KoYLgrPDYLPSipCTpuBoIedU"/>
+<div class="absolute bottom-0 left-0 w-[65%] h-1 bg-yellow-400"></div>
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="text-white font-bold text-sm mb-1">Volta Quest</h3>
+<span class="text-neutral-500 text-xs font-medium">S1:E4 • 12m remaining</span>
+</div>
+<button class="ml-auto flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-yellow-400 hover:text-neutral-950 transition-all">
+<span class="material-symbols-outlined" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container/40 border border-white/5 backdrop-blur-xl p-4 flex gap-4 hover:bg-surface-container/60 transition-all">
+<div class="relative w-32 h-20 flex-none rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High energy dance competition scene in an urban courtyard with colored smoke and neon blue rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhTi_j76sMhUwqIqCZlGOHf77gh81S31c1DBescEVrOsCjkdJfIBnkBitGcOM4lA0Hi4KxNh1M62qwNYCCgnR7va8ILXw7v_ZfgiCCjdppqYWSbiNuM-rRTJ2PcHSE4ghfqACkNxhSBf4i5TBLIDLb1omHUwcc2UhIHf1nLo9zNUKEH0G3byfuPkmn7s7U5ZlRejYEHrCx1aecqxXRXNMIGXEdr0K9QYvB9ILYkEVRE3TSIe_Cr6uzV0aDpIburbstfpxg_EZljSA"/>
+<div class="absolute bottom-0 left-0 w-[30%] h-1 bg-yellow-400"></div>
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="text-white font-bold text-sm mb-1">Azonto Heat</h3>
+<span class="text-neutral-500 text-xs font-medium">Movie • 1h 45m remaining</span>
+</div>
+<button class="ml-auto flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-yellow-400 hover:text-neutral-950 transition-all">
+<span class="material-symbols-outlined" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-neutral-900/90 backdrop-blur-lg rounded-t-3xl shadow-[0_-8px_30px_rgb(0,0,0,0.12)] md:hidden">
+<a class="flex flex-col items-center justify-center bg-yellow-400/10 text-yellow-400 rounded-xl px-4 py-2 tap-highlight-none active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-500 tap-highlight-none active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-500 tap-highlight-none active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="video_library">video_library</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Library</span>
+</a>
+</nav>
+</body></html>

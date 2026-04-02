@@ -1,0 +1,12 @@
+{
+  "name": "troski-police-mvp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs --dir apps/troski-reporter --entry code.html --port 4173",
+    "build": "node scripts/build.mjs",
+    "clean": "node scripts/build.mjs --clean",
+    "preview": "node scripts/serve.mjs --dir dist --entry index.html --port 4174"
+  }
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#006a3e",
+              "surface-variant": "#353534",
+              "on-primary-fixed": "#231b00",
+              "outline-variant": "#4d4632",
+              "secondary": "#81d9a2",
+              "on-secondary-fixed": "#002110",
+              "on-tertiary": "#68000c",
+              "on-surface": "#e5e2e1",
+              "on-secondary-fixed-variant": "#00522f",
+              "on-error-container": "#ffdad6",
+              "tertiary-fixed": "#ffdad7",
+              "on-tertiary-fixed-variant": "#930015",
+              "surface-container": "#201f1f",
+              "surface-container-high": "#2a2a2a",
+              "error-container": "#93000a",
+              "surface-tint": "#ecc300",
+              "primary-fixed": "#ffe17b",
+              "primary": "#fff0c9",
+              "on-secondary": "#00391f",
+              "on-secondary-container": "#8fe7b0",
+              "tertiary": "#ffeeec",
+              "on-primary-fixed-variant": "#554500",
+              "on-error": "#690005",
+              "secondary-fixed": "#9df5bd",
+              "surface-container-highest": "#353534",
+              "on-primary": "#3b2f00",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-bright": "#3a3939",
+              "primary-container": "#fcd116",
+              "inverse-on-surface": "#313030",
+              "on-primary-container": "#6e5a00",
+              "background": "#131313",
+              "error": "#ffb4ab",
+              "on-tertiary-fixed": "#410004",
+              "tertiary-container": "#ffc8c4",
+              "tertiary-fixed-dim": "#ffb3ae",
+              "surface-dim": "#131313",
+              "on-surface-variant": "#d0c6ab",
+              "outline": "#999078",
+              "surface-container-low": "#1c1b1b",
+              "inverse-primary": "#715c00",
+              "secondary-fixed-dim": "#81d9a2",
+              "surface": "#131313",
+              "inverse-surface": "#e5e2e1",
+              "primary-fixed-dim": "#ecc300",
+              "on-background": "#e5e2e1",
+              "on-tertiary-container": "#bb001e"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {
+              "none": "0",
+              "sm": "2px",
+              "DEFAULT": "4px",
+              "md": "6px",
+              "lg": "8px",
+              "xl": "10px",
+              "2xl": "12px",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .tonal-transition-surface-container-low {
+        background: linear-gradient(to bottom, var(--tw-bg-opacity, 1) #1c1b1b, transparent);
+      }
+      .vibrate-short:active {
+        transform: scale(0.98);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar (JSON: Troski Reporter Medium) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-red-600 shadow-lg shadow-red-900/20 border-b-2 border-red-700 flex flex-col px-4 pt-4 pb-2">
+<div class="flex justify-between items-center w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-white vibrate-short p-2 hover:bg-red-700 rounded-full" data-icon="menu">menu</button>
+<h1 class="text-xl font-extrabold text-white uppercase font-headline tracking-tight">Troski Reporter</h1>
+</div>
+<button class="material-symbols-outlined text-white vibrate-short p-2 hover:bg-red-700 rounded-full" data-icon="emergency">emergency</button>
+</div>
+</header>
+<main class="pt-32 pb-36 px-6 max-w-2xl mx-auto space-y-10">
+<!-- Anonymity Confirmation -->
+<section class="relative overflow-hidden bg-surface-container-high rounded-lg p-6 border-l-4 border-primary-container">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl" data-icon="verified_user">verified_user</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-primary-container/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary-container" data-icon="shield_person">shield_person</span>
+</div>
+<div>
+<h2 class="font-headline font-bold text-on-surface">Privacy Protocol Active</h2>
+<p class="text-sm text-on-surface-variant leading-relaxed">Your identity is encrypted. No personal information is shared with drivers or vehicle owners during the investigation process.</p>
+</div>
+</div>
+</section>
+<!-- Stats Overview (Asymmetric Bento Lite) -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32">
+<span class="text-xs font-bold uppercase tracking-widest text-outline">Active Reports</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black font-headline text-primary-container">03</span>
+<span class="text-xs text-on-secondary-container bg-secondary-container px-1.5 py-0.5 rounded">+1</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32 border-l-2 border-secondary-container">
+<span class="text-xs font-bold uppercase tracking-widest text-outline">Resolved Total</span>
+<span class="text-3xl font-black font-headline text-secondary">12</span>
+</div>
+</div>
+<!-- Reports List -->
+<div class="space-y-6">
+<h3 class="text-sm font-bold uppercase tracking-[0.2em] text-outline px-1">Your Submissions</h3>
+<!-- Report Card: Resolved -->
+<div class="group bg-surface-container rounded-xl overflow-hidden hover:bg-surface-container-high transition-all duration-300">
+<div class="p-6 space-y-5">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="text-[10px] font-bold uppercase tracking-tighter text-outline-variant">Ref: GHA-8829-TP</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Reckless Overtaking</h4>
+</div>
+<div class="bg-secondary-container/20 text-on-secondary-container text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-secondary-container/30 flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span>
+                            Resolved
+                        </div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" data-icon="local_taxi">local_taxi</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">GT-4502-21</span>
+<span class="text-[10px] text-outline">Yellow Toyota Hiace • Madina-Circle</span>
+</div>
+</div>
+<div class="pt-3 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] text-outline italic">Closed on Oct 24, 2023</span>
+<button class="text-xs font-bold text-primary-container flex items-center gap-1 hover:underline">
+                            View Outcome <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Report Card: Under Investigation -->
+<div class="group bg-surface-container rounded-xl overflow-hidden hover:bg-surface-container-high transition-all duration-300">
+<div class="p-6 space-y-5">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="text-[10px] font-bold uppercase tracking-tighter text-outline-variant">Ref: GHA-9012-TP</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Overloading Passenger Cabin</h4>
+</div>
+<div class="bg-primary-container/10 text-primary-container text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-primary-container/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-primary-container rounded-full"></span>
+                            Investigating
+                        </div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" data-icon="groups">groups</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">AS-881-19</span>
+<span class="text-[10px] text-outline">White Sprinter • Kumasi-Accra</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="policy">policy</span>
+<p class="text-[10px] text-on-surface-variant">Assigned to Motor Traffic Unit. Evidence being verified.</p>
+</div>
+</div>
+</div>
+<!-- Report Card: Received (Crimson Highlight per instruction) -->
+<div class="group bg-surface-container rounded-xl overflow-hidden hover:bg-surface-container-high transition-all duration-300">
+<div class="p-6 space-y-5">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="text-[10px] font-bold uppercase tracking-tighter text-outline-variant">Ref: GHA-9104-TP</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Drug Usage by Operator</h4>
+</div>
+<div class="bg-on-tertiary-container/10 text-on-tertiary-container text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-on-tertiary-container/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-on-tertiary-container rounded-full"></span>
+                            Received
+                        </div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="warning">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">GW-112-23</span>
+<span class="text-[10px] text-outline">Silver Urvan • Lapaz Station</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]" data-icon="image">image</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]" data-icon="mic">mic</span>
+</div>
+</div>
+<span class="text-[10px] text-outline">Just now</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Help Section -->
+<div class="bg-surface-container-lowest border border-outline-variant/10 rounded-lg p-8 text-center space-y-4">
+<h5 class="font-headline font-bold text-on-surface">Need immediate assistance?</h5>
+<p class="text-xs text-on-surface-variant">If you are currently in danger, use the emergency button or call the hotline immediately.</p>
+<button class="bg-surface-container-high text-primary px-6 py-2 rounded-full text-xs font-bold vibrate-short border border-outline-variant/20">
+                Contact Ghana Police Service
+            </button>
+</div>
+</main>
+<!-- NavigationDrawer (JSON Hidden Shell Logic) -->
+<!-- Suppressed due to main task focus, however BottomNavBar is required for Home navigation -->
+<!-- BottomNavBar (JSON: Destination Count 3) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-neutral-900/90 backdrop-blur-lg flex justify-around items-center px-4 pb-8 pt-3 shadow-[0_-8px_30px_rgb(0,0,0,0.12)] rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-neutral-500 hover:bg-neutral-800 transition-all tap-highlight-none active:scale-90 px-4 py-2">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-neutral-500 hover:bg-neutral-800 transition-all tap-highlight-none active:scale-90 px-4 py-2">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-yellow-400/10 text-yellow-400 rounded-xl px-4 py-2 transition-all tap-highlight-none active:scale-90">
+<span class="material-symbols-outlined" data-icon="campaign" style="font-variation-settings: 'FILL' 1;">campaign</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Reports</span>
+</div>
+</nav>
+<!-- Floating Action Button (FAB) Suppressed per Task-Focused screen rules -->
+</body></html>

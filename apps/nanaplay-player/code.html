@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-container": "#006a3e",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#231b00",
+            "outline-variant": "#4d4632",
+            "secondary": "#81d9a2",
+            "on-secondary-fixed": "#002110",
+            "on-tertiary": "#68000c",
+            "on-surface": "#e5e2e1",
+            "on-secondary-fixed-variant": "#00522f",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed": "#ffdad7",
+            "on-tertiary-fixed-variant": "#930015",
+            "surface-container": "#201f1f",
+            "surface-container-high": "#2a2a2a",
+            "error-container": "#93000a",
+            "surface-tint": "#ecc300",
+            "primary-fixed": "#ffe17b",
+            "primary": "#fff0c9",
+            "on-secondary": "#00391f",
+            "on-secondary-container": "#8fe7b0",
+            "tertiary": "#ffeeec",
+            "on-primary-fixed-variant": "#554500",
+            "on-error": "#690005",
+            "secondary-fixed": "#9df5bd",
+            "surface-container-highest": "#353534",
+            "on-primary": "#3b2f00",
+            "surface-container-lowest": "#0e0e0e",
+            "surface-bright": "#3a3939",
+            "primary-container": "#fcd116",
+            "inverse-on-surface": "#313030",
+            "on-primary-container": "#6e5a00",
+            "background": "#131313",
+            "error": "#ffb4ab",
+            "on-tertiary-fixed": "#410004",
+            "tertiary-container": "#ffc8c4",
+            "tertiary-fixed-dim": "#ffb3ae",
+            "surface-dim": "#131313",
+            "on-surface-variant": "#d0c6ab",
+            "outline": "#999078",
+            "surface-container-low": "#1c1b1b",
+            "inverse-primary": "#715c00",
+            "secondary-fixed-dim": "#81d9a2",
+            "surface": "#131313",
+            "inverse-surface": "#e5e2e1",
+            "primary-fixed-dim": "#ecc300",
+            "on-background": "#e5e2e1",
+            "on-tertiary-container": "#bb001e"
+          },
+          fontFamily: {
+            "headline": ["Epilogue"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #1c1b1b;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #353534;
+      border-radius: 10px;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- Top Navigation Shell -->
+<header class="bg-neutral-950/80 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-yellow-400 cursor-pointer hover:text-yellow-200 transition-colors">arrow_back</span>
+<h1 class="font-['Epilogue'] tracking-tighter text-2xl font-black text-yellow-400 italic">NanaPlay</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8 font-['Epilogue'] tracking-tighter">
+<a class="text-yellow-400 font-bold hover:text-yellow-200 transition-colors" href="#">Home</a>
+<a class="text-neutral-400 hover:text-yellow-200 transition-colors" href="#">Search</a>
+<a class="text-neutral-400 hover:text-yellow-200 transition-colors" href="#">Library</a>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young Ghanaian woman with a confident expression and braided hair against a warm neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2PCSE3GXBCL-O0JzBHBbixFXsxLXOMvKjl7jAsFgerlmIE1Ec0FDQjlnXRzCzI4Ys4il1xe2eyQ91DliX2KkxcMXQgu-BUIwPl3egUFjGjC3hdRL0TkDeahNWGrhhrs_NMO6fAOZIa0xiXi9aKZICHOT1M2soatWE_WAOPYKmvP3gnxJl0zMmCyxoXxuDZenAJ4-sfnYGk5AkGmp-En7SL-HnBm5lbqxt43ek2cwtU6h-RpzoRFXcB9UAncFcG-gzv_LKpouNleI"/>
+</div>
+</div>
+</header>
+<main class="relative h-screen w-full flex flex-col md:flex-row pt-16">
+<!-- Video Player Canvas -->
+<div class="relative flex-grow bg-black group overflow-hidden">
+<!-- Background Video Placeholder/Poster -->
+<img class="absolute inset-0 w-full h-full object-cover opacity-80" data-alt="Cinematic still from a Ghanaian action film featuring a dramatic pursuit scene in a bustling Accra market with warm sunset lighting and motion blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbOlkvMt95QSdQzGjWgDEOo7dAahnnH_gRkF06un5xwqJmPV1bTwgiv1ImEdUyrM6BlY26_N7gitCyYcJXQkKJ8CYo5ZPQg3HcTNhKWq_65gBEcYej_iHFBSkrpgb2nPvqkCAepi2NO4G0uyRTmFFNHYjdarP4Yg3JVxnE4rIgxxSwmanhJE1BKgqzEcFOPH5zsPdW8NmBgsw5sAO9NU_teGITbP_Dpy6dvfNkxyJJ-rZrXeaCHH5vePczGDqVUpEGBa5r0J4iV9Q"/>
+<!-- Overlay Gradient for Controls -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/40"></div>
+<!-- Content Info Overlay (Top Left) -->
+<div class="absolute top-8 left-8 z-10 space-y-2">
+<div class="flex items-center gap-3">
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded tracking-widest uppercase flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container animate-pulse"></span>
+            Live
+          </span>
+<span class="text-on-surface-variant font-medium text-sm tracking-wide">Season 2 • Episode 4: The Accra Heist</span>
+</div>
+<h2 class="font-headline text-3xl font-extrabold text-white tracking-tight">KOTOKA PURSUIT</h2>
+</div>
+<!-- Center Play/Pause Control -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<button class="w-20 h-20 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center shadow-2xl scale-100 hover:scale-105 active:scale-95 transition-transform pointer-events-auto shadow-primary-container/20">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Bottom Player Controls -->
+<div class="absolute bottom-0 left-0 w-full p-8 space-y-6">
+<!-- Progress Bar Container -->
+<div class="group/progress relative w-full h-1.5 bg-surface-variant rounded-full cursor-pointer">
+<div class="absolute top-0 left-0 h-full w-[45%] bg-primary-container rounded-full shadow-[0_0_15px_rgba(252,209,22,0.5)]">
+<div class="absolute -right-2 -top-1.5 w-4 h-4 bg-primary-container rounded-full scale-0 group-hover/progress:scale-100 transition-transform"></div>
+</div>
+<div class="absolute -top-8 left-[45%] -translate-x-1/2 bg-surface-container-high px-2 py-1 rounded text-xs text-primary font-bold opacity-0 group-hover/progress:opacity-100 transition-opacity">
+            24:12
+          </div>
+</div>
+<!-- Secondary Control Bar -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white cursor-pointer hover:text-primary transition-colors">skip_previous</span>
+<span class="material-symbols-outlined text-white cursor-pointer hover:text-primary transition-colors text-4xl" style="font-variation-settings: 'FILL' 1;">pause</span>
+<span class="material-symbols-outlined text-white cursor-pointer hover:text-primary transition-colors">skip_next</span>
+</div>
+<div class="flex items-center gap-4 group/volume">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/volume:text-white transition-colors">volume_up</span>
+<div class="w-24 h-1 bg-surface-variant rounded-full relative">
+<div class="absolute inset-0 w-[70%] bg-on-surface-variant group-hover/volume:bg-primary-container rounded-full"></div>
+</div>
+</div>
+<span class="text-on-surface-variant font-label text-sm font-medium">24:12 / 48:00</span>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-white cursor-pointer transition-colors">subtitles</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-white cursor-pointer transition-colors">settings</span>
+<span class="material-symbols-outlined text-primary hover:text-white cursor-pointer transition-colors">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Episode Drawer (Right Side) -->
+<aside class="w-full md:w-[400px] h-full bg-surface-container-low border-l border-outline-variant/10 flex flex-col z-20">
+<div class="p-6 border-b border-outline-variant/10 bg-surface-container-low/50 backdrop-blur-md">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline text-xl font-bold text-white">Episodes</h3>
+<span class="text-primary font-label text-xs font-bold tracking-widest uppercase">Season 2</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2">The fight for Accra's soul continues as undercover agents infiltrate the diamond exchange.</p>
+</div>
+<div class="flex-grow overflow-y-auto custom-scrollbar p-2 space-y-1">
+<!-- Episode Item 1 (Watched) -->
+<div class="group flex gap-4 p-3 rounded-xl hover:bg-surface-container transition-all cursor-pointer">
+<div class="relative w-32 aspect-video rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="Dramatic close-up of a high-speed car chase on a coastal road at twilight with orange and blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnsVSJCmYNH0U-bw-ZLetOBQkysfaIu4dwO0mTh9PXAycwRDy5sraV82knLnZkDfao0nEunrrnTA3D1KifBJjHNWNpWECoXg7dF4gaGfqGZNKJVGgIPHqLPwUDlRlDLP4B1P6-RbyV0wEji7l8w1G9rIX0Cp30bf9pd0siCkvapUN-tE924sw2OgeF2zCY30kx8rTk5KasQrUhcH3kUFbhLVmoRyK_6Pk9CyKyojMVeNHeTQWQoZ3Jcb0lF7TVAq-c6oLEK9P_duQ"/>
+<div class="absolute inset-0 bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary font-bold text-2xl">check_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 h-1 w-full bg-secondary"></div>
+</div>
+<div class="flex flex-col justify-center gap-1">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-secondary-fixed-dim uppercase tracking-wider">Episode 1</span>
+<span class="text-[10px] text-on-surface-variant">• 42m</span>
+</div>
+<h4 class="font-bold text-sm text-on-surface/60 group-hover:text-on-surface transition-colors">The First Spark</h4>
+</div>
+</div>
+<!-- Episode Item 2 (Watched) -->
+<div class="group flex gap-4 p-3 rounded-xl hover:bg-surface-container transition-all cursor-pointer">
+<div class="relative w-32 aspect-video rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="Action sequence of characters meeting in a neon-lit urban alleyway with rainy surfaces reflecting lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABKWIfBnXc8339r_Ogphmq2jYdhJRkFpR2Vs6FSljLA-RU-A9ld6w00CuPJi-9-XE911iJ1_h8SvKi8ExSXHRyiRWvccFfQmOBahdOxSKukuUyxNHxPnWABK1Oxd3OjEhBopJArawb2d7EU-7kcYAebSkakoNvdwab6HMAUoms2C-6WT8oYVc0hCluPrpkTs-4Tg0yBVEBYlioIGv3tdYroC4audICtQxWA8y6w_R5M2_V-gS5qDxVPPH6CqO0vKdOWaFqe2-aaTQ"/>
+<div class="absolute inset-0 bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary font-bold text-2xl">check_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 h-1 w-full bg-secondary"></div>
+</div>
+<div class="flex flex-col justify-center gap-1">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-secondary-fixed-dim uppercase tracking-wider">Episode 2</span>
+<span class="text-[10px] text-on-surface-variant">• 45m</span>
+</div>
+<h4 class="font-bold text-sm text-on-surface/60 group-hover:text-on-surface transition-colors">Betrayal of Kings</h4>
+</div>
+</div>
+<!-- Episode Item 3 (Current) -->
+<div class="group flex gap-4 p-3 rounded-xl bg-surface-container border border-primary-container/20 transition-all cursor-pointer">
+<div class="relative w-32 aspect-video rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="High-intensity chase scene through a crowded marketplace with vibrant colors and dynamic perspective" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANOzNM9lbnKDui0rswq5N6bPGVcZVlhDH0HwAeSE5HfytqvNPJ_XRrZ16bRZFpJ7DcaA4jgqFKsy1x1y9EikhKzp04RpOjOmBGBD77ajis8X_x8IplzoA_Q49NjAJ2pTBBvnhpHctyzDrnQEkibqc6M2inPevF7HIayWasWfnwfaG4dkayQv21TppXiYbZtRZS13IZL_mgvn36BqoFxSwUp4QZhds5-adqNCRITzERZ4lXt6BmIcbpTT8AXzl5h_Oz8Tfy-BLDpyg"/>
+<div class="absolute inset-0 bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary font-bold text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="absolute bottom-0 left-0 h-1 w-[45%] bg-primary-container shadow-[0_0_8px_#fcd116]"></div>
+</div>
+<div class="flex flex-col justify-center gap-1">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-primary-container uppercase tracking-wider">Episode 4 (Playing)</span>
+<span class="text-[10px] text-on-surface-variant">• 48m</span>
+</div>
+<h4 class="font-bold text-sm text-white">The Accra Heist</h4>
+</div>
+</div>
+<!-- Episode Item 4 (Next) -->
+<div class="group flex gap-4 p-3 rounded-xl hover:bg-surface-container transition-all cursor-pointer">
+<div class="relative w-32 aspect-video rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover opacity-40" data-alt="Mystery scene in a dark room with a single spotlight illuminating a map on a table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe3JSAnsUw3C2FzQxjy3s-P_kCYaYXRBU3xcIw9t0S4_uhbYoff_lqudejjgD6kxVM3F2YjKUd6Sp7hV4I6XtIDjYhNsYv_wPciDPc8xoEV1wbTk6Okt5fGvFvud-cVgGiWdjvloO8V01tvkFYjrbpVC24YstGwNAZhJWZBzYpWHCftMqGfM5VoSkATBzmwk-J2GTS8ae_tsaMppYh1_P19NKQ4GMIyKxn3wnfCPcNNlCjmJTNnQHoXB5DNrmpxj9cyhG86WSJXmY"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-white/20 text-2xl">lock</span>
+</div>
+</div>
+<div class="flex flex-col justify-center gap-1">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Episode 5</span>
+<span class="text-[10px] text-on-surface-variant">• 40m</span>
+</div>
+<h4 class="font-bold text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Shadow Protocols</h4>
+</div>
+</div>
+<!-- Episode Item 5 (Next) -->
+<div class="group flex gap-4 p-3 rounded-xl hover:bg-surface-container transition-all cursor-pointer">
+<div class="relative w-32 aspect-video rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover opacity-40" data-alt="Cinematic wide shot of the Accra skyline at night with glowing lights and purple sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0i3GTh8B8BgR-FP2yQ01ksKwsn0nTVGsb69qBRqHNC7Z608kzy8nNXhQf3sERBEYM9wFMXX7rAIS_eQjMYW_ApipXt7bUdFMht3A9WrtaHa44fUQA4Iq0Gz0tgVoRN-B17y7k8sNVl5FqkmkZw--kX975O9b6FK4iWRQ8U3vkkRnXwO0V7Wqq7CVLlReWpWNqSlCuCBxezCzmhHhy49zcS6s4h9tgXhcudbbwaKwys60UfwINfOK_pHPOy-EGBAje10BYs1cmbUE"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-white/20 text-2xl">lock</span>
+</div>
+</div>
+<div class="flex flex-col justify-center gap-1">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Episode 6</span>
+<span class="text-[10px] text-on-surface-variant">• 52m</span>
+</div>
+<h4 class="font-bold text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Endgame: Labadi Beach</h4>
+</div>
+</div>
+</div>
+<!-- Action Footer for Drawer -->
+<div class="p-6 border-t border-outline-variant/10 bg-surface-container-low">
+<button class="w-full py-4 rounded-full bg-surface-container-high text-primary font-bold text-sm tracking-widest uppercase hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">download</span>
+          Download Season 2
+        </button>
+</div>
+</aside>
+</main>
+<!-- Mobile Bottom Nav - Suppressed as per Task (Transactional/Player Screen) -->
+<footer class="md:hidden bg-neutral-900/90 backdrop-blur-lg fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 rounded-t-3xl shadow-[0_-8px_30px_rgb(0,0,0,0.12)]">
+<div class="flex flex-col items-center justify-center text-neutral-500 tap-highlight-none active:scale-90 transition-all">
+<span class="material-symbols-outlined">star</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-neutral-500 tap-highlight-none active:scale-90 transition-all">
+<span class="material-symbols-outlined">search</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-yellow-400/10 text-yellow-400 rounded-xl px-4 py-2 tap-highlight-none active:scale-90 transition-all">
+<span class="material-symbols-outlined">video_library</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Library</span>
+</div>
+</footer>
+</body></html>
