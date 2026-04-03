@@ -486,7 +486,9 @@
     const audioRef = useRef(null);
     const qrRef = useRef(null);
 
-    const [activeTab, setActiveTab] = useState("home");
+    const [activeTab, setActiveTab] = useState(() => {
+      return safeRead("troski-watch-has-seen-walkthrough", false) ? "home" : "walkthrough";
+    });
     const [form, setForm] = useState(() => {
       const saved = safeRead(DRAFT_KEY, null);
       return saved && saved.form ? { ...createDefaultForm(), ...saved.form } : createDefaultForm();
@@ -757,12 +759,25 @@
         }
       }
 
-      showToast("Sharing is not available here. Use the WhatsApp button instead.", "error");
-    }
-
     const whatsappHref = latestBundle
       ? `https://wa.me/233206639121?text=${encodeURIComponent(buildPoliceSummary(latestBundle.report))}`
       : "https://wa.me/233206639121";
+
+    const PageHeader = ({ title, step, action }) => html`
+      <div className="section-header">
+        <div>
+          ${step && html`<span className="tiny-text">${step}</span>`}
+          <h2 className="section-title">${title}</h2>
+        </div>
+        ${action}
+      </div>
+    `;
+
+    const Progress = ({ current }) => html`
+      <div className="progress-bar">
+        ${[1, 2, 3, 4, 5].map((i) => html`<span className=${i <= current ? "active" : ""}></span>`)}
+      </div>
+    `;
 
     return html`
       <div className="mobile-frame">
@@ -770,636 +785,317 @@
         html`
           <div className=${`toast ${toast.tone || "info"}`}>
             <span className="material-symbols-outlined">
-              ${toast.tone === "error"
-                ? "error"
-                : toast.tone === "success"
-                ? "verified"
-                : "info"}
+              ${toast.tone === "error" ? "error" : toast.tone === "success" ? "verified" : "info"}
             </span>
             <div>${toast.message}</div>
           </div>
         `}
         <div className="app-shell">
-          <section className="stack" data-delay="0">
-            <div className="hero">
-              <div className="hero-header">
+          ${activeTab === "walkthrough" &&
+          html`
+            <section className="stack" data-delay="0" style=${{ padding: "2rem" }}>
+              <div className="hero-header" style=${{ marginBottom: "2rem" }}>
                 <div className="brand-mark">
                   <${StarIcon} />
-                  <div>
-                    <div className="brand-pill">
-                      <span className="live-dot"></span>
-                      anonymous civic stream
-                    </div>
-                    <p className="nav-brand">Troski Watch</p>
-                  </div>
-                </div>
-                <div className="icon-badge">
-                  <span className="material-symbols-outlined">local_police</span>
+                  <div><p className="nav-brand">Troski Watch</p></div>
                 </div>
               </div>
-
-              <h1>Report reckless driving before the next stop.</h1>
-              <p className="hero-copy">
-                A mobile-only MVP for Troski passengers in Ghana to capture evidence, stay
-                anonymous, and package the report for the Ghana Police Service.
-              </p>
-
-              <div className="flag-band" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div className="hero-grid">
-                <div className="hero-card">
-                  <div className="badge-row">
-                    <div className="badge red">Live route</div>
-                    <div className="badge green">Police-ready</div>
-                  </div>
-                  <div className="hero-stage">
-                    <div className="preview-overlay">
-                      <div>
-                        <h3 className="overlay-title">Fast capture lane</h3>
-                        <p className="player-copy">
-                          Video, photo, voice, and QR scan all stay in one cinematic mobile flow.
-                        </p>
-                      </div>
-                      <div>
-                        <div className="progress-track">
-                          <div className="progress-fill" style=${{ width: `${readiness}%` }}></div>
-                        </div>
-                        <div className="player-controls">
-                          <span>${readiness}% report ready</span>
-                          <span>${evidence.length} evidence item${evidence.length === 1 ? "" : "s"}</span>
-                        </div>
-                      </div>
+              <div className="status-card" style=${{ marginBottom: "1rem" }}>
+                <div className="timeline-list">
+                  <div className="timeline-item">
+                    <div className="timeline-track"><span className="status-dot gold"></span></div>
+                    <div>
+                      <p className="timeline-title">1. Capture Evidence</p>
+                      <p className="timeline-copy">Take photos, videos, or voice notes safely.</p>
                     </div>
-                    <div className="road-lines" aria-hidden="true">
-                      <span></span>
-                      <span></span>
-                      <span></span>
+                  </div>
+                  <div className="timeline-item">
+                    <div className="timeline-track"><span className="status-dot green"></span></div>
+                    <div>
+                      <p className="timeline-title">2. Identify the Vehicle</p>
+                      <p className="timeline-copy">Scan the DVLA QR or type the plate number.</p>
+                    </div>
+                  </div>
+                  <div className="timeline-item">
+                    <div className="timeline-track"><span className="status-dot red"></span></div>
+                    <div>
+                      <p className="timeline-title">3. Forward Anonymously</p>
+                      <p className="timeline-copy">Send the packet to Ghana Police via WhatsApp.</p>
                     </div>
                   </div>
                 </div>
-
-                <div className="hero-subcard">
-                  <div className="metric-tile">
-                    <div className="metric-label">today's ready packets</div>
-                    <div className="metric-value gold">${String(reports.length).padStart(2, "0")}</div>
-                  </div>
-                  <div className="metric-tile">
-                    <div className="metric-label">active evidence items</div>
-                    <div className="metric-value green">${String(evidence.length).padStart(2, "0")}</div>
-                  </div>
-                </div>
               </div>
-            </div>
-          </section>
+              <button type="button" className="cta" onClick=${() => {
+                safeWrite("troski-watch-has-seen-walkthrough", true);
+                setActiveTab("home");
+              }}>
+                <span className="material-symbols-outlined">rocket_launch</span>
+                Get Started
+              </button>
+            </section>
+          `}
 
           ${activeTab === "home" &&
           html`
+            <section className="stack" data-delay="0">
+              <div className="hero">
+                <div className="hero-header">
+                  <div className="brand-mark">
+                    <${StarIcon} />
+                    <div>
+                      <div className="brand-pill"><span className="live-dot"></span> anonymous civic stream</div>
+                      <p className="nav-brand">Troski Watch</p>
+                    </div>
+                  </div>
+                  <div className="icon-badge"><span className="material-symbols-outlined">local_police</span></div>
+                </div>
+                <h1>Report reckless driving before the next stop.</h1>
+                <p className="hero-copy">Anonymous, fast, and police-ready — built for Troski passengers in Ghana.</p>
+                <div className="flag-band" aria-hidden="true"><span></span><span></span><span></span></div>
+              </div>
+            </section>
             <section className="stack" data-delay="1">
               <div className="section-header">
                 <h2 className="section-title">Trending in Accra</h2>
-                <span className="section-link">
-                  live roads
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </span>
+                <span className="section-link">live roads</span>
               </div>
               <div className="row-scroll">
-                ${HOTSPOTS.map(
-                  (spot) => html`
-                    <article key=${spot.title} className="hotspot-card">
-                      <div className="badge-row">
-                        <span className=${`hotspot-tag ${spot.tone}`}>${spot.tag}</span>
-                      </div>
-                      <div>
-                        <h3 className="card-title">${spot.title}</h3>
-                        <p className="card-copy">${spot.copy}</p>
-                      </div>
-                    </article>
-                  `
-                )}
+                ${HOTSPOTS.map((spot) => html`
+                  <article key=${spot.title} className="hotspot-card">
+                    <div className="badge-row"><span className=${`hotspot-tag ${spot.tone}`}>${spot.tag}</span></div>
+                    <div><h3 className="card-title">${spot.title}</h3><p className="card-copy">${spot.copy}</p></div>
+                  </article>
+                `)}
               </div>
-            </section>
-
-            <section className="stack" data-delay="2">
-              <div className="section-header">
-                <h2 className="section-title">Vehicle Capture</h2>
-                <button type="button" className="section-link" onClick=${() => qrRef.current && qrRef.current.click()}>
-                  scan qr
-                  <span className="material-symbols-outlined">qr_code_scanner</span>
+              <div style=${{ marginTop: "1.25rem" }}>
+                <button type="button" className="cta" onClick=${() => setActiveTab("vehicle")}>
+                  <span className="material-symbols-outlined">add_circle</span> Start a Report
                 </button>
               </div>
+            </section>
+          `}
+
+          ${activeTab === "vehicle" &&
+          html`
+            <section className="stack" data-delay="0">
+              <${Progress} current=${1} />
+              <${PageHeader} title="Scan Vehicle QR" step="Step 1 of 5" action=${html`
+                <button type="button" className="section-link" onClick=${() => qrRef.current && qrRef.current.click()}>
+                  scan <span className="material-symbols-outlined">qr_code_scanner</span>
+                </button>
+              `} />
               <article className="scan-card">
                 <div className="scan-stage">
                   <div className="preview-overlay">
                     <div>
-                      <div className=${`badge ${scanMessage.tone === "error"
-                        ? "red"
-                        : scanMessage.tone === "success"
-                        ? "green"
-                        : "gold"}`}>
-                        ${scanMessage.tone === "error"
-                          ? "scan issue"
-                          : scanMessage.tone === "success"
-                          ? "profile loaded"
-                          : "scan ready"}
+                      <div className=${`badge ${scanMessage.tone === "error" ? "red" : scanMessage.tone === "success" ? "green" : "gold"}`}>
+                        ${scanMessage.tone === "error" ? "scan issue" : scanMessage.tone === "success" ? "profile loaded" : "scan ready"}
                       </div>
                       <h3 className="sheet-title">DVLA QR auto-fill</h3>
                       <p className="player-copy">${scanMessage.text}</p>
                     </div>
-                    <div className="scan-rail">
-                      <span className="badge gold">QR on every troski</span>
-                      <span className="badge">No backend needed</span>
-                      <span className="badge green">Driver details auto-filled</span>
-                    </div>
                   </div>
                 </div>
-
                 <div className="field-grid">
                   <div className="field-block">
-                    <label className="field-label" htmlFor="demo-qr">Demo QR payload</label>
-                    <input
-                      id="demo-qr"
-                      className="demo-input"
-                      type="text"
-                      value=${scanInput}
-                      onChange=${(event) => setScanInput(event.target.value)}
-                      placeholder="DVLA:GT-4451-24"
-                    />
+                    <label className="field-label" htmlFor="demo-qr">Demo payload</label>
+                    <input id="demo-qr" className="demo-input" type="text" value=${scanInput} onChange=${(e) => setScanInput(e.target.value)} placeholder="DVLA:GT-4451-24" />
                   </div>
-
                   <div className="button-row">
-                    <button type="button" className="cta" onClick=${handleDemoScan}>
-                      <span className="material-symbols-outlined">auto_fix_high</span>
-                      Auto-fill
-                    </button>
-                    <button
-                      type="button"
-                      className="ghost-btn"
-                      onClick=${() => loadSampleQr("DVLA:GT-4451-24")}
-                    >
-                      <span className="material-symbols-outlined">bolt</span>
-                      Load sample
-                    </button>
+                    <button type="button" className="cta" onClick=${handleDemoScan}><span className="material-symbols-outlined">auto_fix_high</span> Auto-fill</button>
+                    <button type="button" className="ghost-btn" onClick=${() => loadSampleQr("DVLA:GT-4451-24")}><span className="material-symbols-outlined">bolt</span> Load sample</button>
                   </div>
                 </div>
-
-                ${vehicleProfile &&
-                html`
-                  <article className="surface-card">
-                    <div className="card-header">
-                      <div>
-                        <div className="badge green">
-                          <${StarIcon} />
-                          verified vehicle
-                        </div>
-                        <h3 className="sheet-title">${vehicleProfile.plate}</h3>
-                      </div>
-                      <span className="tiny-text">${vehicleProfile.vehicleType || "Troski"}</span>
-                    </div>
-                    <div className="summary-grid">
-                      <div className="summary-pill">
-                        <span className="mini-label">Driver</span>
-                        <strong>${vehicleProfile.driver || "Unknown"}</strong>
-                      </div>
-                      <div className="summary-pill">
-                        <span className="mini-label">Route</span>
-                        <strong>${vehicleProfile.route || "Unknown"}</strong>
-                      </div>
-                      <div className="summary-pill">
-                        <span className="mini-label">Union</span>
-                        <strong>${vehicleProfile.operator || "Unknown"}</strong>
-                      </div>
-                    </div>
-                  </article>
-                `}
               </article>
-            </section>
-
-            <section className="stack" data-delay="3">
-              <div className="section-header">
-                <h2 className="section-title">Incident Details</h2>
-                <button type="button" className="section-link" onClick=${useCurrentLocation}>
-                  use gps
-                  <span className="material-symbols-outlined">near_me</span>
+              ${vehicleProfile && html`
+                <article className="surface-card" style=${{ marginTop: "1rem" }}>
+                  <div className="card-header">
+                    <div><div className="badge green"><${StarIcon} /> verified</div><h3 className="sheet-title">${vehicleProfile.plate}</h3></div>
+                    <span className="tiny-text">${vehicleProfile.vehicleType || "Troski"}</span>
+                  </div>
+                </article>
+              `}
+              <div style=${{ marginTop: "1.25rem" }}>
+                <button type="button" className="cta" onClick=${() => setActiveTab("incident-type")}>
+                  <span className="material-symbols-outlined">arrow_forward</span> Next: Incident Type
                 </button>
               </div>
+            </section>
+          `}
+
+          ${activeTab === "incident-type" &&
+          html`
+            <section className="stack" data-delay="0">
+              <${Progress} current=${2} />
+              <${PageHeader} title="What happened?" step="Step 2 of 5" />
+              <div className="chip-grid">
+                ${INCIDENT_TYPES.map((type) => html`
+                  <button key=${type} type="button" className=${`chip ${form.incidentType === type ? "active" : ""}`} onClick=${() => upsertForm({ incidentType: type })}>
+                    ${type}
+                  </button>
+                `)}
+              </div>
+              <div style=${{ marginTop: "1.25rem" }}>
+                <button type="button" className="cta" onClick=${() => setActiveTab("incident-details")}>
+                  <span className="material-symbols-outlined">arrow_forward</span> Next: Vehicle & Notes
+                </button>
+              </div>
+            </section>
+          `}
+
+          ${activeTab === "incident-details" &&
+          html`
+            <section className="stack" data-delay="0">
+              <${Progress} current=${3} />
+              <${PageHeader} title="Vehicle & Notes" step="Step 3 of 5" />
               <article className="detail-card">
-                <div className="chip-grid">
-                  ${INCIDENT_TYPES.map(
-                    (type) => html`
-                      <button
-                        key=${type}
-                        type="button"
-                        className=${`chip ${form.incidentType === type ? "active" : ""}`}
-                        onClick=${() => upsertForm({ incidentType: type })}
-                      >
-                        ${type}
-                      </button>
-                    `
-                  )}
-                </div>
-
                 <div className="field-grid two">
                   <div className="field-block">
-                    <label className="field-label" htmlFor="plate">Vehicle number</label>
-                    <input
-                      id="plate"
-                      className="field"
-                      type="text"
-                      value=${form.plate}
-                      onChange=${(event) => upsertForm({ plate: event.target.value.toUpperCase() })}
-                      placeholder="GT-1234-26"
-                    />
+                    <label className="field-label" htmlFor="plate">Plate number</label>
+                    <input id="plate" className="field" type="text" value=${form.plate} onChange=${(e) => upsertForm({ plate: e.target.value.toUpperCase() })} placeholder="GT-1234-26" />
                   </div>
-                  <div className="field-block">
-                    <label className="field-label" htmlFor="when">Date and time</label>
-                    <input
-                      id="when"
-                      className="field"
-                      type="datetime-local"
-                      value=${form.occurredAt}
-                      onChange=${(event) => upsertForm({ occurredAt: event.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="field-grid two">
                   <div className="field-block">
                     <label className="field-label" htmlFor="route">Route</label>
-                    <input
-                      id="route"
-                      className="field"
-                      type="text"
-                      value=${form.route}
-                      onChange=${(event) => upsertForm({ route: event.target.value })}
-                      placeholder="Circle to Achimota"
-                    />
-                  </div>
-                  <div className="field-block">
-                    <label className="field-label" htmlFor="terminal">Terminal</label>
-                    <input
-                      id="terminal"
-                      className="field"
-                      type="text"
-                      value=${form.terminal}
-                      onChange=${(event) => upsertForm({ terminal: event.target.value })}
-                      placeholder="Achimota New Station"
-                    />
+                    <input id="route" className="field" type="text" value=${form.route} onChange=${(e) => upsertForm({ route: e.target.value })} placeholder="Circle to Achimota" />
                   </div>
                 </div>
+                <div className="field-block">
+                  <label className="field-label" htmlFor="details">Describe what happened</label>
+                  <textarea id="details" className="textarea" value=${form.details} onChange=${(e) => upsertForm({ details: e.target.value })} placeholder="Describe the overspeeding, dangerous lane change, abuse, or any immediate risk to passengers."></textarea>
+                </div>
+              </article>
+              <div style=${{ marginTop: "1.25rem" }}>
+                <button type="button" className="cta" onClick=${() => setActiveTab("incident-location")}>
+                  <span className="material-symbols-outlined">arrow_forward</span> Next: Location & Time
+                </button>
+              </div>
+            </section>
+          `}
 
+          ${activeTab === "incident-location" &&
+          html`
+            <section className="stack" data-delay="0">
+              <${Progress} current=${4} />
+              <${PageHeader} title="Location & Time" step="Step 4 of 5" action=${html`
+                <button type="button" className="section-link" onClick=${useCurrentLocation}>
+                  GPS <span className="material-symbols-outlined">near_me</span>
+                </button>
+              `} />
+              <article className="detail-card">
                 <div className="field-block">
                   <label className="field-label" htmlFor="location">Location</label>
-                  <input
-                    id="location"
-                    className="field"
-                    type="text"
-                    value=${form.location}
-                    onChange=${(event) => upsertForm({ location: event.target.value })}
-                    placeholder="Circle-Achimota Road or GPS coordinates"
-                  />
+                  <input id="location" className="field" type="text" value=${form.location} onChange=${(e) => upsertForm({ location: e.target.value })} placeholder="Circle-Achimota Road or GPS coordinates" />
                 </div>
-
                 <div className="field-grid two">
                   <div className="field-block">
-                    <label className="field-label" htmlFor="danger">Danger level</label>
+                    <label className="field-label" htmlFor="when">Date & time</label>
+                    <input id="when" className="field" type="datetime-local" value=${form.occurredAt} onChange=${(e) => upsertForm({ occurredAt: e.target.value })} />
+                  </div>
+                  <div className="field-block">
+                    <label className="field-label" htmlFor="danger">Severity</label>
                     <div className="select-wrap">
-                      <select
-                        id="danger"
-                        className="select-field"
-                        value=${form.dangerLevel}
-                        onChange=${(event) => upsertForm({ dangerLevel: event.target.value })}
-                      >
-                        <option>Medium</option>
-                        <option>High</option>
-                        <option>Critical</option>
+                      <select id="danger" className="select-field" value=${form.dangerLevel} onChange=${(e) => upsertForm({ dangerLevel: e.target.value })}>
+                        <option>Medium</option><option>High</option><option>Critical</option>
                       </select>
                       <span className="material-symbols-outlined">expand_more</span>
                     </div>
                   </div>
                 </div>
-
-                <div className="field-block">
-                  <label className="field-label" htmlFor="details">What happened?</label>
-                  <textarea
-                    id="details"
-                    className="textarea"
-                    value=${form.details}
-                    onChange=${(event) => upsertForm({ details: event.target.value })}
-                    placeholder="Describe the overspeeding, dangerous lane change, abuse, or any immediate risk to passengers."
-                  ></textarea>
-                </div>
-
                 <div className="toggle-row">
-                  <div className="toggle-copy">
-                    <strong>Anonymous mode stays on</strong>
-                    <span className="tiny-text">
-                      This MVP does not ask for passenger identity before packaging the report.
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    className=${`toggle ${form.anonymous ? "active" : ""}`}
-                    onClick=${() => upsertForm({ anonymous: !form.anonymous })}
-                    aria-label="Toggle anonymous mode"
-                  ></button>
+                  <div className="toggle-copy"><strong>Stay anonymous</strong><span className="tiny-text">No identity is collected.</span></div>
+                  <button type="button" className=${`toggle ${form.anonymous ? "active" : ""}`} onClick=${() => upsertForm({ anonymous: !form.anonymous })} aria-label="Toggle anonymous mode"></button>
                 </div>
               </article>
+              <div style=${{ marginTop: "1.25rem" }}>
+                <button type="button" className="cta" onClick=${() => setActiveTab("capture")}>
+                  <span className="material-symbols-outlined">videocam</span> Step 5: Add Evidence
+                </button>
+              </div>
             </section>
           `}
 
           ${activeTab === "capture" &&
           html`
-            <section className="stack" data-delay="1">
-              <div className="section-header">
-                <h2 className="section-title">Evidence Lane</h2>
-                <span className="section-link">
-                  streaming-style preview
-                  <span className="material-symbols-outlined">play_circle</span>
-                </span>
-              </div>
-              <${MediaStage} item=${selectedEvidence} />
-            </section>
-
-            <section className="stack" data-delay="2">
-              <div className="section-header">
-                <h2 className="section-title">Capture Actions</h2>
+            <section className="stack" data-delay="0">
+              <${Progress} current=${5} />
+              <${PageHeader} title="Capture Evidence" step="Step 5 of 5" action=${html`
                 <button type="button" className="section-link" onClick=${useCurrentLocation}>
-                  add gps
-                  <span className="material-symbols-outlined">location_on</span>
+                  GPS <span className="material-symbols-outlined">location_on</span>
                 </button>
-              </div>
+              `} />
               <div className="row-scroll">
                 <article className="quick-card">
-                  <div className="card-header">
-                    <div className="icon-badge">
-                      <span className="material-symbols-outlined">videocam</span>
-                    </div>
-                    <span className="badge gold">record motion</span>
-                  </div>
-                  <div>
-                    <h3 className="card-title">Record video</h3>
-                    <p className="card-copy">
-                      Use the back camera to capture overspeeding, swerving, or dangerous
-                      overtaking.
-                    </p>
-                  </div>
-                  <button type="button" className="cta" onClick=${() => openInput("video")}>
-                    <span className="material-symbols-outlined">play_arrow</span>
-                    Open camera
-                  </button>
+                  <div className="card-header"><div className="icon-badge"><span className="material-symbols-outlined">videocam</span></div><span className="badge gold">motion</span></div>
+                  <div><h3 className="card-title">Record video</h3><p className="card-copy">Capture overspeeding or swerving.</p></div>
+                  <button type="button" className="cta" onClick=${() => openInput("video")}><span className="material-symbols-outlined">play_arrow</span> Record</button>
                 </article>
-
                 <article className="quick-card">
-                  <div className="card-header">
-                    <div className="icon-badge">
-                      <span className="material-symbols-outlined">photo_camera</span>
-                    </div>
-                    <span className="badge green">plate focus</span>
-                  </div>
-                  <div>
-                    <h3 className="card-title">Take photo</h3>
-                    <p className="card-copy">
-                      Snap the plate, station code, or cabin situation for clear still evidence.
-                    </p>
-                  </div>
-                  <button type="button" className="cta" onClick=${() => openInput("photo")}>
-                    <span className="material-symbols-outlined">camera</span>
-                    Capture
-                  </button>
+                  <div className="card-header"><div className="icon-badge"><span className="material-symbols-outlined">photo_camera</span></div><span className="badge green">photo</span></div>
+                  <div><h3 className="card-title">Take photo</h3><p className="card-copy">Snap the plate or cabin.</p></div>
+                  <button type="button" className="cta" onClick=${() => openInput("photo")}><span className="material-symbols-outlined">camera</span> Snap</button>
                 </article>
-
                 <article className="quick-card">
-                  <div className="card-header">
-                    <div className="icon-badge">
-                      <span className="material-symbols-outlined">mic</span>
-                    </div>
-                    <span className="badge red">voice memo</span>
-                  </div>
-                  <div>
-                    <h3 className="card-title">Record audio</h3>
-                    <p className="card-copy">
-                      Leave a short anonymous narration while the incident is still fresh.
-                    </p>
-                  </div>
-                  <button type="button" className="cta" onClick=${() => openInput("audio")}>
-                    <span className="material-symbols-outlined">radio_button_checked</span>
-                    Start note
-                  </button>
+                  <div className="card-header"><div className="icon-badge"><span className="material-symbols-outlined">mic</span></div><span className="badge red">voice</span></div>
+                  <div><h3 className="card-title">Voice note</h3><p className="card-copy">Leave an anonymous narration.</p></div>
+                  <button type="button" className="cta" onClick=${() => openInput("audio")}><span className="material-symbols-outlined">radio_button_checked</span> Record</button>
                 </article>
               </div>
             </section>
-
-            <section className="stack" data-delay="3">
-              <div className="section-header">
-                <h2 className="section-title">Captured Evidence</h2>
-                <span className="section-link">${evidence.length} item${evidence.length === 1 ? "" : "s"}</span>
-              </div>
-              ${evidence.length
-                ? html`
-                    <div className="evidence-grid">
-                      ${evidence.map(
-                        (item) => html`
-                          <${MediaPreview}
-                            key=${item.id}
-                            item=${item}
-                            onDelete=${removeEvidence}
-                            onSelect=${(match) => setSelectedEvidenceId(match.id)}
-                          />
-                        `
-                      )}
-                    </div>
-                  `
-                : html`
-                    <div className="empty-state">
-                      Evidence has not been added yet. Use the gold capture buttons to grab video,
-                      photo, or audio directly from a phone camera or microphone.
-                    </div>
-                  `}
+            <section className="stack" data-delay="1">
+              <div className="section-header"><h2 className="section-title">Captured</h2><span className="section-link">${evidence.length} item${evidence.length === 1 ? "" : "s"}</span></div>
+              ${evidence.length ? html`
+                <div className="evidence-grid">
+                  ${evidence.map((item) => html`<${MediaPreview} key=${item.id} item=${item} onDelete=${removeEvidence} onSelect=${(m) => setSelectedEvidenceId(m.id)} />`)}
+                </div>
+              ` : html`<div className="empty-state">No evidence yet. Use the capture buttons above.</div>`}
             </section>
+            <div style=${{ padding: "0 1rem 1rem" }}>
+              <div className="composer-head" style=${{ marginBottom: "0.75rem" }}>
+                <div className="composer-copy"><span className="mini-label">readiness</span><strong>${readiness}% complete</strong></div>
+                <div className="ring" style=${{ "--value": readiness }}>${readiness}%</div>
+              </div>
+              <button type="button" className="cta" onClick=${createReportPacket}><span className="material-symbols-outlined">send</span> Prepare Report Packet</button>
+            </div>
           `}
 
           ${activeTab === "cases" &&
           html`
-            <section className="stack" data-delay="1">
-              <div className="section-header">
-                <h2 className="section-title">Police Packet</h2>
-                <button type="button" className="section-link" onClick=${resetDraft}>
-                  new report
-                  <span className="material-symbols-outlined">add_circle</span>
-                </button>
-              </div>
+            <section className="stack" data-delay="0">
+              <${PageHeader} title="Police Packet" action=${html`
+                <button type="button" className="section-link" onClick=${resetDraft}>new <span className="material-symbols-outlined">add_circle</span></button>
+              `} />
               <article className="summary-card">
-                ${latestBundle
-                  ? html`
-                      <div className="card-header">
-                        <div>
-                          <div className="badge gold">packet ready</div>
-                          <h3 className="sheet-title">${latestBundle.report.reference}</h3>
-                        </div>
-                        <span className="status-pill gold">${latestBundle.report.status}</span>
-                      </div>
-                      <p className="detail-copy">
-                        ${latestBundle.report.plate} • ${latestBundle.report.incidentType} •
-                        ${latestBundle.report.location}
-                      </p>
-                      <div className="summary-grid">
-                        <div className="summary-pill">
-                          <span className="mini-label">Evidence</span>
-                          <strong>${latestBundle.report.evidenceCount}</strong>
-                        </div>
-                        <div className="summary-pill">
-                          <span className="mini-label">Driver</span>
-                          <strong>${latestBundle.report.driver}</strong>
-                        </div>
-                        <div className="summary-pill">
-                          <span className="mini-label">Danger</span>
-                          <strong>${latestBundle.report.dangerLevel}</strong>
-                        </div>
-                      </div>
-                      <div className="button-row">
-                        <button type="button" className="cta" onClick=${shareLatestPacket}>
-                          <span className="material-symbols-outlined">share</span>
-                          Share packet
-                        </button>
-                        <a className="ghost-btn" href=${whatsappHref} target="_blank" rel="noreferrer">
-                          <span className="material-symbols-outlined">chat</span>
-                          WhatsApp police
-                        </a>
-                      </div>
-                    `
-                  : html`
-                      <div className="empty-state">
-                        Create the report packet from the Home or Capture tab. Once ready, this
-                        screen becomes the police handoff dashboard.
-                      </div>
-                    `}
+                ${latestBundle ? html`
+                  <div className="card-header">
+                    <div><div className="badge gold">packet ready</div><h3 className="sheet-title">${latestBundle.report.reference}</h3></div>
+                    <span className="status-pill gold">${latestBundle.report.status}</span>
+                  </div>
+                  <p className="detail-copy">${latestBundle.report.plate} • ${latestBundle.report.incidentType} • ${latestBundle.report.location}</p>
+                  <div className="button-row">
+                    <button type="button" className="cta" onClick=${shareLatestPacket}><span className="material-symbols-outlined">share</span> Share packet</button>
+                    <a className="ghost-btn" href=${whatsappHref} target="_blank" rel="noreferrer"><span className="material-symbols-outlined">chat</span> WhatsApp</a>
+                  </div>
+                ` : html`<div className="empty-state">Complete the report flow to create your first packet.</div>`}
               </article>
             </section>
-
-            <section className="stack" data-delay="2">
-              <div className="section-header">
-                <h2 className="section-title">Dispatch Timeline</h2>
-                <a className="section-link" href="tel:191">
-                  call 191
-                  <span className="material-symbols-outlined">phone</span>
-                </a>
-              </div>
-              <article className="status-card">
-                <div className="timeline-list">
-                  <div className="timeline-item">
-                    <div className="timeline-track">
-                      <span className="status-dot gold"></span>
-                    </div>
-                    <div>
-                      <p className="timeline-title">1. Evidence captured locally</p>
-                      <p className="timeline-copy">
-                        Video, photo, and audio stay on-device until the user decides to share.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="timeline-item">
-                    <div className="timeline-track">
-                      <span className="status-dot green"></span>
-                    </div>
-                    <div>
-                      <p className="timeline-title">2. Report packet created</p>
-                      <p className="timeline-copy">
-                        Summary text is packaged with plate, time, route, and location.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="timeline-item">
-                    <div className="timeline-track">
-                      <span className="status-dot red"></span>
-                    </div>
-                    <div>
-                      <p className="timeline-title">3. Ghana Police / NRSA handoff</p>
-                      <p className="timeline-copy">
-                        Use the share sheet, WhatsApp, or a direct emergency call depending on the
-                        severity.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </section>
-
-            <section className="stack" data-delay="3">
-              <div className="section-header">
-                <h2 className="section-title">Recent Packets</h2>
-                <span className="section-link">${allReports.length} total cards</span>
-              </div>
+            <section className="stack" data-delay="1">
+              <div className="section-header"><h2 className="section-title">Report History</h2><span className="section-link">${allReports.length} packets</span></div>
               <div className="stack" data-delay="0">
-                ${allReports.map(
-                  (report) => html`
-                    <article key=${report.reference} className="history-card">
-                      <div className="history-row">
-                        <div>
-                          <div className="history-tag">${report.reference}</div>
-                          <h3 className="history-title">${report.incidentType}</h3>
-                        </div>
-                        <span className=${`status-pill ${report.statusTone || "gold"}`}>
-                          ${report.status}
-                        </span>
-                      </div>
-                      <p className="history-copy">
-                        ${report.plate} • ${report.route} • ${report.location}
-                      </p>
-                      <div className="history-meta">
-                        <span className="badge">${report.createdAt}</span>
-                        <span className="badge gold">${report.evidenceCount} evidence</span>
-                        <span className="badge green">${report.notes || report.driver}</span>
-                      </div>
-                    </article>
-                  `
-                )}
+                ${allReports.map((report) => html`
+                  <article key=${report.reference} className="history-card">
+                    <div className="history-row">
+                      <div><div className="history-tag">${report.reference}</div><h3 className="history-title">${report.incidentType}</h3></div>
+                      <span className=${`status-pill ${report.statusTone || "gold"}`}>${report.status}</span>
+                    </div>
+                    <p className="history-copy">${report.plate} • ${report.route}</p>
+                  </article>
+                `)}
               </div>
             </section>
           `}
 
           ${activeTab === "help" &&
           html`
-            <section className="stack" data-delay="1">
-              <div className="section-header">
-                <h2 className="section-title">Official Channels</h2>
-                <span className="section-link">
-                  Ghana response
-                  <span className="material-symbols-outlined">verified_user</span>
-                </span>
-              </div>
-              <div className="stack" data-delay="0">
-                ${OFFICIAL_CHANNELS.map(
-                  (channel) => html`
-                    <article key=${channel.number} className="hotline-card">
-                      <div className="hotline-header">
-                        <div>
-                          <span className=${`badge ${channel.tone}`}>${channel.title}</span>
-                          <h3 className="hotline-number">${channel.number}</h3>
-                        </div>
-                        <div className="icon-badge">
-                          <span className="material-symbols-outlined">${channel.icon}</span>
-                        </div>
-                      </div>
-                      <p className="hotline-copy">${channel.copy}</p>
-                      <a className="cta" href=${channel.href} target="_blank" rel="noreferrer">
-                        <span className="material-symbols-outlined">call</span>
-                        Open channel
-                      </a>
-                    </article>
-                  `
-                )}
-              </div>
-            </section>
-
-            <section className="stack" data-delay="2">
-              <div className="section-header">
-                <h2 className="section-title">What to include</h2>
-              </div>
-              <article className="tip-card">
                 <div className="timeline-list">
                   <div className="timeline-item">
                     <div className="timeline-track">
@@ -1467,6 +1163,8 @@
             </section>
           `}
 
+          ${(activeTab === "vehicle" || activeTab === "incident" || activeTab === "capture") &&
+          html`
           <div className="sticky-composer">
             <div className="composer-head">
               <div className="composer-copy">
@@ -1488,6 +1186,7 @@
               </button>
             </div>
           </div>
+          `}
 
           <input
             ref=${photoRef}
@@ -1527,7 +1226,7 @@
           <div className="nav-panel">
             <button
               type="button"
-              className=${`nav-item ${activeTab === "home" ? "active" : ""}`}
+              className=${`nav-item ${(activeTab === "home" || activeTab === "vehicle" || activeTab === "incident" || activeTab === "incident-type" || activeTab === "incident-details" || activeTab === "incident-location") ? "active" : ""}`}
               onClick=${() => setActiveTab("home")}
             >
               <div className="nav-icon"><${StarIcon} /></div>
