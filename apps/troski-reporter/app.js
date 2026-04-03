@@ -758,6 +758,7 @@
           /* fall through */
         }
       }
+    }
 
     const whatsappHref = latestBundle
       ? `https://wa.me/233206639121?text=${encodeURIComponent(buildPoliceSummary(latestBundle.report))}`
